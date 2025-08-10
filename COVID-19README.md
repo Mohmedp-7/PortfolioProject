@@ -1,5 +1,5 @@
 This project analyzes global COVID-19 case, death, and vaccination trends using a historical dataset covering 2019–2021.
-The dataset is intentionally preserved in its original form to highlight early-pandemic dynamics and demonstrate data cleaning, SQL querying, and dashboard creation skills.
+The dataset only contains data from 2019-2021 because I wanted to highlight early-pandemic dynamics and demonstrate data cleaning, SQL querying, and dashboard creation skills.
 It is not intended to reflect current case counts or vaccination rates, but rather to showcase analytical methods and visualization techniques on a complete, fixed-range dataset.
 
 Skills & Tools:
@@ -32,5 +32,5 @@ Key Insights:
   The United Kingdom followed with 14.93%, while Mexico remained lower at 3.32%.
 
 - Global infection rates rose slowly through early 2020, then sharply increased from late 2020 into 2021, matching the timing of major pandemic waves.
-Estimates for late 2021 indicate the U.S. and U.K. would continue leading infection percentages if trends persisted.
+Estimates for late 2021 indicate the U.S. and U.K. would continue leading infection percentages if trends persisted (This did turn out to be true).
 
