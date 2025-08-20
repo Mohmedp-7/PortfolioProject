@@ -8,10 +8,6 @@ Where continent is not null
 order by 3,4
 
 
---Select * 
---From PortfolioProject..CovidVaccinations$
---order by 3,4
-
 --Select data that we are going to be using
 
 Select Location, date, total_cases, new_cases, total_deaths, population
@@ -58,11 +54,6 @@ order by percent_confirmed_positive desc
 
 --Showing continents with highest deathcounts
 
---Select location, MAX(cast(Total_deaths as int)) as percent_confirmed_positive  
---From PortfolioProject..CovidDeaths$
---Where continent is  null
---Group by location
---order by percent_confirmed_positive desc
 
 Select continent, MAX(cast(Total_deaths as int)) as percent_confirmed_positive  
 From PortfolioProject..CovidDeaths$
@@ -160,3 +151,4 @@ Join PortfolioProject..CovidVaccinations$ vac
 	On dea.location = vac.location
 	and dea.date = vac.date
 Where dea.continent is not null
+
