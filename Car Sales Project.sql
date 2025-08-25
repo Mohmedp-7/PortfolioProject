@@ -5,10 +5,11 @@ Select state,Count(*) as sales_in_state
 from PortfolioProject..car_prices$ 
 Group by state
 
--- We notice that when we run the query above, there are alphanumeric values that aren't states. The problem is in the csv itself; we notice that every state that has that alphanumeric value
--- have a body called navitgation. The most likely posibility is that this navitgation was supposed to be a part of trim (the column before body) but a comma is seperating it. Even if we fix the csv itself
--- we find that sales date isn't even listed in the csv so it would be pointless. The only thing we can do is get rid of these rows. Let's do this by creating a temp table.
+-- I encountered something weird when I ran the query above; there are alphanumeric values that aren't states. I had no idea what the problem was but I found in the comments of dataset and a video that the problem is in the csv itself; we notice that every state that has that alphanumeric value
+-- have a body called navitgation. The most likely possibility is that this navitgation was supposed to be a part of trim (the column before body), but a comma is separating it. Even if we fix the CSV itself
+-- we find that the sales date isn't even listed in the CSV, so it would be pointless. The only thing we can do is get rid of these rows.
 
+-- Create a temp table to resolve the issue
 DROP TABLE IF EXISTS #new_car_data
 SELECT year as manufactured_year,make,model,trim as car_trim ,body,transmission,vin,state,condition,odometer,color,interior,seller,mmr,sellingprice,saledate, SUBSTRING(saledate,12,4) as sale_year, SUBSTRING(saledate,5,3) as sale_monthname,SUBSTRING(saledate,9,2) as sale_day,
 Case SUBSTRING(saledate,5,3)
@@ -43,7 +44,7 @@ Group by make,model
 Order by count(*) desc
 
 
--- What is the average selling sprice of cars in each state?
+-- What is the average selling price of cars in each state?
 
 Select state, Avg(sellingprice) as avg_selling_price
 from #new_car_data
@@ -51,7 +52,7 @@ Group by state
 order by avg_selling_price ASC;
 
 
--- What are the number of sales each month 
+-- What is the number of sales each month 
 Select sale_month,Count(*) as cars_sold
 from #new_car_data
 group by sale_month
@@ -155,4 +156,5 @@ vin_sales
 	Count(*) OVER (Partition by vin) as vin_sales
 	from #new_car_data
 	) as s
+
 where vin_sales > 1
